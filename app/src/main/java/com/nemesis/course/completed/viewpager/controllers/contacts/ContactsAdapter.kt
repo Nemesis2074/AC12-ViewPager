@@ -6,7 +6,13 @@ import android.view.ViewGroup
 import com.nemesis.course.completed.viewpager.R
 import com.nemesis.course.completed.viewpager.model.Contact
 
-class ContactsAdapter(val contacts: ArrayList<Contact>): RecyclerView.Adapter<ContactViewHolder>() {
+interface ContactsListener{
+    fun onContactSelected(contact: Contact)
+}
+
+class ContactsAdapter(val contacts: ArrayList<Contact>, var listener: ContactsListener): RecyclerView.Adapter<ContactViewHolder>() {
+
+
 
     //Cuantos elementos tiene la lista
     override fun getItemCount(): Int {
@@ -24,7 +30,7 @@ class ContactsAdapter(val contacts: ArrayList<Contact>): RecyclerView.Adapter<Co
     //Mostramos datos
     override fun onBindViewHolder(viewHolder: ContactViewHolder, position: Int) {
         val contact = contacts[position]
-        viewHolder.bindData(contact)
+        viewHolder.bindData(contact, listener)
     }
 
 

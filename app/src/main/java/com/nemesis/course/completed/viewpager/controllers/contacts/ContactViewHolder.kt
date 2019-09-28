@@ -20,13 +20,17 @@ class ContactViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     val btnCall: ImageButton = itemView.findViewById(R.id.contact_call_button)
     val btnEmail: ImageButton = itemView.findViewById(R.id.contact_email_button)
 
-    fun bindData(contact: Contact){
+    fun bindData(contact: Contact, listener: ContactsListener){
 
         Picasso.get().load(contact.photo).into(imgPhoto)
 
         txtName.text = contact.name
         txtWork.text = contact.work
         txtPhone.text = contact.phone
+
+        cardView.setOnClickListener {
+            listener.onContactSelected(contact)
+        }
     }
 
 }

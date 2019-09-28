@@ -7,11 +7,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.nemesis.course.completed.viewpager.R
 import com.nemesis.course.completed.viewpager.model.Contact
 import com.nemesis.course.completed.viewpager.model.io.ConnectionManager
 
-class ContactsFragment: Fragment() {
+class ContactsFragment: Fragment(), ContactsListener {
+
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ContactsAdapter
@@ -33,9 +35,13 @@ class ContactsFragment: Fragment() {
         loadContacts()
     }
 
+    override fun onContactSelected(contact: Contact) {
+        Toast.makeText(activity!!, contact.name, Toast.LENGTH_SHORT).show()
+    }
+
     private fun setupFragment(){
 
-        adapter = ContactsAdapter(contacts)
+        adapter = ContactsAdapter(contacts, this)
 
         val layoutManager = LinearLayoutManager(activity!!, LinearLayoutManager.VERTICAL, false)
 
