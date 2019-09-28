@@ -1,5 +1,7 @@
 package com.nemesis.course.completed.viewpager.controllers.contacts
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
@@ -39,6 +41,27 @@ class ContactsFragment: Fragment(), ContactsListener {
 
     override fun onContactSelected(contact: Contact) {
         Toast.makeText(activity!!, contact.name, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onCall(contact: Contact) {
+        val data = Uri.fromParts("tel", contact.phone, null)
+
+        val intent = Intent(Intent.ACTION_DIAL, data)
+        intent.setData(data)
+
+        val chooser = Intent.createChooser(intent, "Seleccionar")
+        startActivity(chooser)
+    }
+
+    override fun onEmail(contact: Contact) {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.putExtra(Intent.EXTRA_TEXT, "mensaje de prueba")
+        intent.putExtra(Intent.EXTRA_SUBJECT, contact.email)
+        intent.type = "text/plain"
+
+
+        val chooser = Intent.createChooser(intent, "Seleccionar")
+        startActivity(chooser)
     }
 
     private fun setupFragment(){

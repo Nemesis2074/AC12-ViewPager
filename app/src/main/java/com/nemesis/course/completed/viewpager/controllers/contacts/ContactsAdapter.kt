@@ -8,6 +8,8 @@ import com.nemesis.course.completed.viewpager.model.Contact
 
 interface ContactsListener{
     fun onContactSelected(contact: Contact)
+    fun onCall(contact: Contact)
+    fun onEmail(contact: Contact)
 }
 
 class ContactsAdapter(val contacts: ArrayList<Contact>, var listener: ContactsListener): RecyclerView.Adapter<ContactViewHolder>() {

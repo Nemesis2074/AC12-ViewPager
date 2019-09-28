@@ -31,6 +31,14 @@ class ContactViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         cardView.setOnClickListener {
             listener.onContactSelected(contact)
         }
+
+        btnCall.setOnClickListener {
+            listener.onCall(contact)
+        }
+
+        btnEmail.setOnClickListener {
+            listener.onEmail(contact)
+        }
     }
 
 }
