@@ -2,6 +2,7 @@ package com.nemesis.course.completed.viewpager.controllers.contacts
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -14,7 +15,7 @@ import com.nemesis.course.completed.viewpager.model.io.ConnectionManager
 
 class ContactsFragment: Fragment(), ContactsListener {
 
-
+    private lateinit var refreshLayout: SwipeRefreshLayout
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ContactsAdapter
     private var contacts = ArrayList<Contact>()
@@ -23,6 +24,7 @@ class ContactsFragment: Fragment(), ContactsListener {
 
         val view = inflater.inflate(R.layout.fragment_contacts, container, false)
 
+        refreshLayout = view.findViewById(R.id.refresh_layout)
         recyclerView = view.findViewById(R.id.contacts_recyclerview)
 
         return view
@@ -48,6 +50,10 @@ class ContactsFragment: Fragment(), ContactsListener {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
+
+        refreshLayout.setOnRefreshListener {
+            loadContacts()
+        }
     }
 
 
@@ -58,9 +64,10 @@ class ContactsFragment: Fragment(), ContactsListener {
             contacts.clear()
             contacts.addAll(it)
             adapter.notifyDataSetChanged()
+            refreshLayout.isRefreshing = false
 
         }, fail = {
-
+            refreshLayout.isRefreshing = false
         })
     }
 
