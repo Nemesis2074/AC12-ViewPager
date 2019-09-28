@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">ViewPager Demo</string>
+    <string name="title_home">Countries</string>
+    <string name="title_dashboard">Kitties</string>
+    <string name="title_notifications">Contacts</string>
+
+    <string name="country_01">Argentina</string>
+    <string name="country_02">Belgium</string>
+    <string name="country_03">Brazil</string>
+    <string name="country_04">Croatia</string>
+    <string name="country_05">Denmark</string>
+    <string name="country_06">Dominican Republic</string>
+    <string name="country_07">France</string>
+    <string name="country_08">Germany</string>
+    <string name="country_09">Greece</string>
+    <string name="country_10">Italy</string>
+    <string name="country_11">Mexico</string>
+    <string name="country_12">Netherlands</string>
+    <string name="country_13">Norway</string>
+    <string name="country_14">Spain</string>
+    <string name="country_15">United States</string>
+    <string name="country_16">Venezuela</string>
+
+</resources>
